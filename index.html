@@ -85,7 +85,7 @@ body{background:var(--cream);font-family:'DM Sans',sans-serif;color:var(--char);
 .tribe-f{display:flex}
 .tf{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.28);display:flex;align-items:center;justify-content:center;font-size:1rem;margin-left:-9px}
 .tf:first-child{margin-left:0}
-.affblock{background:var(--char);border-radius:22px;padding:28px 22px;margin-bottom:22px;text-align:center;position:relative;overflow:hidden}
+.affblock{background:#1e2a3a;border-radius:22px;padding:28px 22px;margin-bottom:22px;text-align:center;position:relative;overflow:hidden}
 .affblock::before{content:'"';font-family:'Fraunces',serif;font-size:11rem;position:absolute;top:-45px;left:8px;opacity:.05;color:#fff;line-height:1}
 .afflabel{font-size:.67rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:12px;position:relative;z-index:1}
 .afftext{font-family:'Fraunces',serif;font-size:clamp(1.1rem,4vw,1.5rem);font-weight:700;color:#fff;line-height:1.4;position:relative;z-index:1;transition:opacity .35s ease,transform .35s ease}
@@ -127,8 +127,8 @@ body{background:var(--cream);font-family:'DM Sans',sans-serif;color:var(--char);
 .cp{position:fixed;pointer-events:none;animation:cfall 3.5s ease forwards;z-index:9999}
 @keyframes cfall{0%{transform:translateY(-10px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(560deg);opacity:0}}
 .footer{text-align:center;padding:18px 20px 40px;font-size:.74rem;color:var(--muted);font-style:italic}
-
-
+ 
+ 
 </style>
 <style>
 /* ====== ROAR OVERLAY ====== */
@@ -163,7 +163,7 @@ body{background:var(--cream);font-family:'DM Sans',sans-serif;color:var(--char);
 }
 @-webkit-keyframes robg{from{opacity:0}to{opacity:1}}
 @keyframes robg{from{opacity:0}to{opacity:1}}
-
+ 
 /* Shockwave rings - pure CSS divs */
 .srw{
   position:absolute;
@@ -180,7 +180,7 @@ body{background:var(--cream);font-family:'DM Sans',sans-serif;color:var(--char);
   0%  {transform:scale(1);  opacity:.95}
   100%{transform:scale(140);opacity:0}
 }
-
+ 
 /* Dot particles - CSS animated */
 .rdot{
   position:absolute;
@@ -195,7 +195,7 @@ body{background:var(--cream);font-family:'DM Sans',sans-serif;color:var(--char);
   80% {opacity:.6}
   100%{transform:translate(var(--tx),var(--ty)) scale(0); opacity:0}
 }
-
+ 
 /* Star particles */
 .rstar{
   position:absolute;
@@ -211,7 +211,7 @@ body{background:var(--cream);font-family:'DM Sans',sans-serif;color:var(--char);
 }
 .rstar::before{width:var(--sw,12px);height:4px;top:-2px;left:calc(var(--sw,12px)/-2);}
 .rstar::after {width:4px;height:var(--sw,12px);left:-2px;top:calc(var(--sw,12px)/-2);}
-
+ 
 /* Big emoji */
 #ro-em{
   position:relative;
@@ -230,7 +230,7 @@ body{background:var(--cream);font-family:'DM Sans',sans-serif;color:var(--char);
   80% {transform:scale(1.4) rotate(0);opacity:1}
   100%{transform:scale(0) rotate(8deg);opacity:0}
 }
-
+ 
 /* Power word */
 #ro-wd{
   position:relative;
@@ -254,11 +254,26 @@ body{background:var(--cream);font-family:'DM Sans',sans-serif;color:var(--char);
   90% {opacity:1}
   100%{opacity:0;transform:scale(1.08) translateY(-8px)}
 }
+ 
+/* ====== MOOD MODAL ====== */
+#mood-modal{position:fixed;inset:0;z-index:800;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(44,44,44,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s ease,visibility .3s ease}
+#mood-modal.on{opacity:1;visibility:visible;pointer-events:all}
+#mood-modal-card{background:var(--cream);border-radius:28px;width:100%;max-width:480px;overflow:hidden;transform:translateY(30px) scale(.95);transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+#mood-modal.on #mood-modal-card{transform:translateY(0) scale(1)}
+#mood-modal-col{padding:32px 28px 24px;text-align:center;position:relative}
+#mood-modal-icon{font-size:3.2rem;display:block;margin-bottom:10px}
+#mood-modal-title{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:700;color:#fff;display:block;margin-bottom:0}
+#mood-modal-close-top{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.2);border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:.95rem;color:#fff;display:flex;align-items:center;justify-content:center;transition:background .2s}
+#mood-modal-close-top:hover{background:rgba(255,255,255,.35)}
+#mood-modal-body{padding:24px 28px 28px}
+#mood-modal-msg{font-family:'Fraunces',serif;font-size:clamp(.95rem,2.5vw,1.1rem);font-weight:300;font-style:italic;line-height:1.65;color:var(--char);display:block;margin-bottom:22px}
+#mood-modal-cta{width:100%;background:var(--char);color:#fff;border:none;border-radius:14px;padding:14px;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:500;cursor:pointer;transition:all .2s;letter-spacing:.02em}
+#mood-modal-cta:hover{background:#444;transform:scale(1.02)}
 </style>
 </head>
 <body>
 <canvas id="pcanvas"></canvas>
-
+ 
 <div id="takeover">
   <div id="tk-bg"></div>
   <div id="tk-emoji">&#x1F981;</div>
@@ -266,7 +281,7 @@ body{background:var(--cream);font-family:'DM Sans',sans-serif;color:var(--char);
   <div id="tk-vibe">fierce &amp; fearless</div>
   <button id="tk-cta" onclick="enterApp()">Enter your sanctuary &#x2192;</button>
 </div>
-
+ 
 <section id="hero">
   <div class="hdeco">
     <svg style="position:absolute;top:-20px;left:-30px;width:240px;opacity:.08" viewBox="0 0 260 380"><path d="M130,0 Q200,95 130,190 Q60,285 130,380" stroke="#3d6b4f" stroke-width="5" fill="none"/><ellipse cx="185" cy="75" rx="48" ry="78" fill="#3d6b4f" transform="rotate(32 185 75)"/><ellipse cx="72" cy="165" rx="44" ry="70" fill="#7aaa88" transform="rotate(-28 72 165)"/><ellipse cx="188" cy="270" rx="40" ry="65" fill="#5a7a5c" transform="rotate(22 188 270)"/></svg>
@@ -282,7 +297,7 @@ body{background:var(--cream);font-family:'DM Sans',sans-serif;color:var(--char);
     <div class="acard" style="--cc:#9b7eb5" onclick="triggerTakeover('butterfly')"><span class="ace">&#x1F98B;</span><span class="acn">Butterfly</span><span class="acv">transforming &amp; radiant</span></div>
   </div>
 </section>
-
+ 
 <div id="app">
   <div class="cpanel" id="cpanel">
     <div class="caura" id="caura"></div>
@@ -302,6 +317,7 @@ body{background:var(--cream);font-family:'DM Sans',sans-serif;color:var(--char);
     <div class="affblock">
       <div class="afflabel">Today's truth</div>
       <div class="afftext" id="afftext">You are not too much. You are exactly enough &#x2014; and then some.</div>
+      <div id="affauthor" style="font-family:'DM Sans',sans-serif;font-size:.78rem;color:rgba(255,255,255,.5);margin-top:10px;position:relative;z-index:1;letter-spacing:.03em;font-style:italic;min-height:1.2em"></div>
       <button class="affbtn" onclick="newAff()">&#x2736; Give me another truth</button>
     </div>
     <div class="slabel">How are you feeling right now?</div>
@@ -327,8 +343,8 @@ body{background:var(--cream);font-family:'DM Sans',sans-serif;color:var(--char);
   </div>
   <div class="footer">Spirit Squad <span style="font-size:.6rem;opacity:.4">v4</span> &#x2014; made for the ones who give everything and deserve everything in return &#x1F33F;</div>
 </div>
-
-
+ 
+ 
 <div class="moverlay" id="moverlay" onclick="closeOut(event)">
   <div class="modal">
     <div class="mhandle"></div>
@@ -339,7 +355,7 @@ body{background:var(--cream);font-family:'DM Sans',sans-serif;color:var(--char);
   </div>
 </div>
 <div class="toast" id="toast"></div>
-
+ 
 <script>
 const A={
   lioness:{e:'\u{1F981}',bg:'#5c2210',glow:'rgba(210,90,40,.38)',pts:['#e87a4a','#f0b070','#d4a043','#ffe8cc'],v:'fierce & fearless',
@@ -351,15 +367,79 @@ const A={
   butterfly:{e:'\u{1F98B}',bg:'#1e1230',glow:'rgba(155,110,210,.38)',pts:['#9b7eb5','#c8aadc','#6b4e8a','#e8d8f8'],v:'transforming & radiant',
     w:['Every uncomfortable phase is just the cocoon before something extraordinary.','You are mid-transformation. The mess is part of the magic.','Change finds you because you\'re brave enough to keep growing.','What looks like chaos is actually becoming.','You\'ve already outgrown this. The next chapter is writing itself.']}
 };
-const AFFS=['You are not too much. You are exactly enough \u2014 and then some.','Brilliant women get underestimated. That gap is your competitive advantage.','Your standards are not the problem. The environment is.','Everything they couldn\'t diminish is proof of what you\'re made of.','Passion and excellence are never the issue. You know this.','You deserve a room that rises to meet your energy \u2014 not drain it.','The most dangerous thing you can do is believe their ceiling is your limit.','Your ambition is not arrogance. It is accuracy.','What you bring to the table built the table.','You don\'t need to shrink yourself to make others comfortable.','Your drive is a gift. Don\'t apologize for it.','Four powerhouses. Unbreakable. Unstoppable.'];
-const MOODS={overwhelmed:'\u{1F30A}\u{1F33F}  Take three slow breaths. You are the calm after the storm.',unseen:'\u{1F441}\uFE0F\u2728  You are seen \u2014 by yourself, by your squad, by what matters.',frustrated:'\u{1F525}\u{1F48E}  That fire means you care deeply. That\'s extraordinary.',drained:'\u{1F342}\u{1F331}  Rest is resistance. Recharge without guilt.',strong:'\u26A1\u{1F451}  YES! Lock this feeling in. This is who you really are.',proud:'\u2728\u{1F31F}  You should be. Own it \u2014 quietly or loudly.'};
+const AFFS=[
+  {q:'You are not too much. You are exactly enough — and then some.',a:null},
+  {q:'Brilliant women get underestimated. That gap is your competitive advantage.',a:null},
+  {q:'Your standards are not the problem. The environment is.',a:null},
+  {q:"Everything they couldn't diminish is proof of what you're made of.",a:null},
+  {q:'Passion and excellence are never the issue. You know this.',a:null},
+  {q:'You deserve a room that rises to meet your energy — not drain it.',a:null},
+  {q:'The most dangerous thing you can do is believe their ceiling is your limit.',a:null},
+  {q:'Your ambition is not arrogance. It is accuracy.',a:null},
+  {q:'What you bring to the table built the table.',a:null},
+  {q:"You don't need to shrink yourself to make others comfortable.",a:null},
+  {q:"Your drive is a gift. Don't apologize for it.",a:null},
+  {q:'Four powerhouses. Unbreakable. Unstoppable.',a:null},
+  {q:'Think like a queen. A queen is not afraid to fail. Failure is another stepping stone to greatness.',a:'Oprah Winfrey'},
+  {q:'I am no longer accepting the things I cannot change. I am changing the things I cannot accept.',a:'Angela Davis'},
+  {q:'You have to believe in yourself when no one else does.',a:'Serena Williams'},
+  {q:'The future belongs to those who believe in the beauty of their dreams.',a:'Eleanor Roosevelt'},
+  {q:'It took me quite a long time to develop a voice, and now that I have it, I am not going to be silent.',a:'Madeleine Albright'},
+  {q:'Above all, be the heroine of your life, not the victim.',a:'Nora Ephron'},
+  {q:'I have chosen to no longer be apologetic for my femaleness and my femininity.',a:'Chimamanda Ngozi Adichie'},
+  {q:'I never dreamed about success. I worked for it.',a:'Estée Lauder'},
+  {q:'I have met myself and I am going to care for her fiercely.',a:'Glennon Doyle'},
+  {q:'The most courageous act is still to think for yourself. Aloud.',a:'Coco Chanel'},
+  {q:"The question isn't who is going to let me; it's who is going to stop me.",a:'Ayn Rand'},
+  {q:'Women belong in all places where decisions are being made.',a:'Ruth Bader Ginsburg'},
+  {q:'What I want young women and girls to know is: you are powerful and your voice matters.',a:'Kamala Harris'},
+  {q:'Each time a woman stands up for herself she stands up for all women.',a:'Maya Angelou'},
+  {q:"I always did something I was a little not ready to do. That's how you grow.",a:'Marissa Mayer'},
+  {q:'There is no limit to what we, as women, can accomplish.',a:'Michelle Obama'},
+  {q:'A woman with a voice is by definition a strong woman.',a:'Melinda Gates'},
+  {q:"Don't follow the crowd, let the crowd follow you.",a:'Margaret Thatcher'},
+  {q:'Once we give up searching for approval we often find it easier to earn respect.',a:'Gloria Steinem'},
+  {q:'You must never be fearful about what you are doing when it is right.',a:'Rosa Parks'},
+  {q:'There is more to life than being a passenger.',a:'Amelia Earhart'},
+  {q:"Strong women don't have attitudes, we have standards.",a:'Marilyn Monroe'},
+  {q:'Everything is within your power, and your power is within you.',a:'Janice Trachtman'},
+  {q:'When women support each other, incredible things happen.',a:null}
+];
+function shuffleAFFS(){for(let i=AFFS.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[AFFS[i],AFFS[j]]=[AFFS[j],AFFS[i]]}}
+shuffleAFFS();
+const MOODS={
+  overwhelmed:{
+    icon:'\u{1F30A}',title:'Overwhelmed',col:'#1a4a5c',
+    msg:'Take three slow breaths right now. In for 4, hold for 4, out for 6. You are the calm that exists beneath the storm \u2014 it hasn\'t washed you away. It never does. The chaos around you is not a reflection of your capability. You are still standing. That is everything.'
+  },
+  unseen:{
+    icon:'\u{1F441}\uFE0F',title:'Unseen',col:'#3d2a5c',
+    msg:'Being unseen by the wrong people is not the same as being invisible. You are seen \u2014 by yourself, by your squad, by the work you show up and do every single day. The ones who matter notice. And one day, the ones who didn\'t will understand exactly what they overlooked.'
+  },
+  frustrated:{
+    icon:'\u{1F525}',title:'Frustrated',col:'#5c2210',
+    msg:'That fire in you? It\'s not a problem. It\'s proof. You care deeply, you hold high standards, and you refuse to accept less than what\'s right. That\'s not a flaw \u2014 that\'s extraordinary. Channel it. Let it drive you forward, not burn you from the inside.'
+  },
+  drained:{
+    icon:'\u{1F342}',title:'Drained',col:'#2c3a1a',
+    msg:'Rest is not quitting. Rest is how you come back stronger. You give so much of yourself \u2014 to your work, to others, to doing things right. You are allowed to refill. Recharge without guilt. The world will still need everything you have to offer tomorrow \u2014 make sure you have it to give.'
+  },
+  strong:{
+    icon:'\u26A1',title:'Feeling Strong',col:'#1a3a1a',
+    msg:'YES. Lock this feeling in your body right now. Remember exactly how this feels \u2014 the clarity, the confidence, the certainty. This is not a fluke. This is who you actually are when the noise goes quiet. Come back to this moment whenever you need to remember.'
+  },
+  proud:{
+    icon:'\u2728',title:'Quietly Proud',col:'#3a2a0a',
+    msg:'You should be. Don\'t let anyone rush you past this moment. Quietly proud is its own kind of power \u2014 you don\'t need an audience to validate what you\'ve done. You know. Your squad knows. Own every bit of it, loudly or softly, on your own terms.'
+  }
+};
 const MODALS={
   breathe:{t:'\u{1F32C}\uFE0F Reset in 60 Seconds',s:'Your nervous system is faster than the chaos. Reclaim it.',i:[['4\uFE0F\u20E3','Breathe IN slowly for 4 counts. Feel your feet on the floor.'],['7\uFE0F\u20E3','HOLD for 7 counts. You are steady. You are here. You are safe.'],['8\uFE0F\u20E3','Breathe OUT for 8 counts. Release the tension, not your power.'],['\u{1F501}','Repeat 3 times. Notice the shift. Your calm is a superpower.'],['\u{1F4A7}','Splash cold water on wrists. Name 3 things you can see. You\'re back.']]},
   script:{t:'\u{1F4AC} Boundary Scripts',s:'Calm, measured, and completely non-negotiable.',i:[['\u{1F5E3}\uFE0F','"I hear what you\'re saying. Let me come back to you once I\'ve thought it through."'],['\u{1F5E3}\uFE0F','"That doesn\'t work for me, but here\'s what I can do..."'],['\u{1F5E3}\uFE0F','"I want to make sure we\'re aligned. Can we revisit this together?"'],['\u{1F5E3}\uFE0F','"I need space to respond thoughtfully to that."'],['\u{1F5E3}\uFE0F','"I\'ve noted your feedback. My position remains the same."']]},
   wins:{t:'\u{1F3C6} Your Win List',s:'You\'ve already done so much more than they see. Remember it.',i:[['\u2B50','You showed up today. Fully, honestly, and with integrity.'],['\u2B50','You went above and beyond \u2014 again \u2014 without being asked.'],['\u2B50','You handled something hard without losing your grace.'],['\u2B50','You supported someone on your team without credit.'],['\u2B50','You held your standard even when it wasn\'t easy.'],['\u2B50','You\'re still here. Still passionate. Still you. That\'s the biggest win.']]},
   exit:{t:'\u{1F6AA} Exit Energy',s:'Whether leaving a meeting, a conversation, or a chapter \u2014 do it like the force you are.',i:[['\u2728','Leave like you\'re walking toward something, not running from something.'],['\u2728','Update your resume tonight. Not because you\'re leaving \u2014 because you can.'],['\u2728','Protect your energy like it\'s the most valuable resource in the building.'],['\u2728','Your next chapter is being written. Make sure you hold the pen.'],['\u2728','When you go, they will feel the gap. That\'s all the confirmation you need.']]}
 };
-
+ 
 // CANVAS
 const cv=document.getElementById('pcanvas'),cx=cv.getContext('2d');
 let pts=[];
@@ -385,10 +465,10 @@ function loop(){cx.clearRect(0,0,cv.width,cv.height);pts=pts.filter(p=>p.life>0)
 loop();
 function burst(x,y,n,cols,t='b'){for(let i=0;i<n;i++)pts.push(new P(x,y,cols,t))}
 function burstEmoji(){const el=document.getElementById('cemoji'),r=el.getBoundingClientRect();const x=r.left+r.width/2,y=r.top+r.height/2;burst(x,y,45,A[cur].pts,'b')}
-
+ 
 // STATE
 let cur='lioness',si=0,ai=0;
-
+ 
 // TAKEOVER
 function triggerTakeover(a){
   cur=a;const d=A[a];
@@ -417,7 +497,11 @@ function setupApp(){
   document.getElementById('caura').style.background=`radial-gradient(circle, ${d.glow} 0%, transparent 70%)`;
   document.getElementById('cemoji').textContent=d.e;
   document.getElementById('cspeech').textContent='\u201C'+d.w[0]+'\u201D';
-  si=0;ai=0;document.getElementById('afftext').textContent=AFFS[0];
+  si=0;ai=0;
+  shuffleAFFS();
+  document.getElementById('afftext').textContent=AFFS[0].q;
+  const atEl=document.getElementById('affauthor');
+  if(atEl) atEl.textContent=AFFS[0].a ? '— '+AFFS[0].a : '';
   window.scrollTo({top:0,behavior:'instant'});
   setTimeout(burstEmoji,350);
 }
@@ -426,7 +510,7 @@ function goBack(){
   document.getElementById('app').style.display='none';
   window.scrollTo({top:0,behavior:'instant'});
 }
-
+ 
 // COMPANION TAP
 function tapCompanion(){
   const em=document.getElementById('cemoji'),b=document.getElementById('cbubble'),sp=document.getElementById('cspeech'),d=A[cur];
@@ -438,19 +522,43 @@ function tapCompanion(){
   b.classList.add('fo');
   setTimeout(()=>{si=(si+1)%d.w.length;sp.textContent='\u201C'+d.w[si]+'\u201D';b.classList.remove('fo')},320);
 }
-
+ 
 // AFFIRMATION
 function newAff(){
   const el=document.getElementById('afftext');
+  const atEl=document.getElementById('affauthor');
   el.classList.add('fo');
-  setTimeout(()=>{ai=(ai+1)%AFFS.length;el.textContent=AFFS[ai];el.classList.remove('fo')},350);
+  setTimeout(()=>{
+    ai=(ai+1)%AFFS.length;
+    el.textContent=AFFS[ai].q;
+    if(atEl)atEl.textContent=AFFS[ai].a?'— '+AFFS[ai].a:'';
+    el.classList.remove('fo');
+  },350);
 }
-
+ 
 // MOOD
-function mood(m){showToast(MOODS[m]);burst(innerWidth/2,innerHeight*.4,22,A[cur].pts,'b')}
-
+function mood(m){
+  const d=MOODS[m];
+  const mo=document.getElementById('mood-modal');
+  const mc=document.getElementById('mood-modal-col');
+  const mi=document.getElementById('mood-modal-icon');
+  const mt=document.getElementById('mood-modal-title');
+  const mm=document.getElementById('mood-modal-msg');
+  mc.style.background=d.col;
+  mi.textContent=d.icon;
+  mt.textContent=d.title;
+  mm.textContent=d.msg;
+  mo.classList.add('on');
+  document.body.style.overflow='hidden';
+  burst(innerWidth/2,innerHeight*.4,22,A[cur].pts,'b');
+}
+function closeMoodModal(){
+  document.getElementById('mood-modal').classList.remove('on');
+  document.body.style.overflow='';
+}
+ 
 // ROAR
-
+ 
 // MODAL
 function openM(k){
   const d=MODALS[k];
@@ -462,21 +570,21 @@ function openM(k){
 }
 function closeM(){document.getElementById('moverlay').classList.remove('on');document.body.style.overflow=''}
 function closeOut(e){if(e.target===document.getElementById('moverlay'))closeM()}
-
+ 
 // TOAST
 let tt;
 function showToast(m){const t=document.getElementById('toast');t.innerHTML=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),3800)}
-
+ 
 // KEYBOARD
 document.addEventListener('keydown',e=>{
   if(e.code==='Space'&&document.getElementById('app').style.display!=='none'){e.preventDefault();newAff()}
   if(e.code==='Escape')closeM();
 });
-
+ 
 // ====== PURE CSS ROAR ======
 const BG={lioness:'linear-gradient(135deg,#7a1e06,#c4714a)',otter:'linear-gradient(135deg,#0a2e1c,#3d9b60)',owl:'linear-gradient(135deg,#1e1508,#c4903a)',butterfly:'linear-gradient(135deg,#1a0d2e,#7b5baa)'};
 const WORDS=['UNSTOPPABLE','UNLEASHED','YOU ARE FIRE','ROAR','SOVEREIGN','UNBREAKABLE','LIMITLESS','POWERFUL'];
-
+ 
 function makeDot(cx,cy,color,size,tx,ty,dur,del){
   const d=document.createElement('div');
   d.className='rdot';
@@ -495,7 +603,7 @@ function makeRing(del,color){
   r.style.cssText=`border-color:${color};animation-delay:${del}s`;
   return r;
 }
-
+ 
 let roarTimer=null;
 function doRoar(){
   const d=A[cur];
@@ -503,32 +611,32 @@ function doRoar(){
   const roBg=document.getElementById('ro-bg');
   const roEm=document.getElementById('ro-em');
   const roWd=document.getElementById('ro-wd');
-
+ 
   // Clear any previous particles/rings
   ro.querySelectorAll('.srw,.rdot,.rstar').forEach(el=>el.remove());
   clearTimeout(roarTimer);
-
+ 
   // Set content
   roBg.style.background=BG[cur];
   roEm.textContent=d.e;
   roWd.textContent=WORDS[Math.floor(Math.random()*WORDS.length)];
-
+ 
   // Force reflow to restart animations
   roEm.style.animation='none'; roEm.style.webkitAnimation='none'; void roEm.offsetWidth;
   roEm.style.animation=''; roEm.style.webkitAnimation='';
   roWd.style.animation='none'; roWd.style.webkitAnimation='none'; void roWd.offsetWidth;
   roWd.style.animation=''; roWd.style.webkitAnimation='';
-
+ 
   // Show overlay - force repaint for Android Chrome
   ro.classList.add('on');
   ro.getBoundingClientRect(); // force reflow/repaint
-
+ 
   // ── SHOCKWAVE RINGS ──
   const ringCols=['rgba(255,255,255,.9)','rgba(255,220,100,.8)','rgba(255,150,80,.7)','rgba(255,255,255,.6)','rgba(255,200,150,.5)'];
   [0,.1,.25,.42,.62].forEach((del,i)=>{
     setTimeout(()=>ro.appendChild(makeRing(0,ringCols[i])),del*1000);
   });
-
+ 
   // ── PARTICLES ──
   const cols=d.pts;
   const n=80; // safe count for mobile
@@ -547,7 +655,7 @@ function doRoar(){
       : makeDot(0,0,col,size,tx,ty,dur,del);
     ro.appendChild(el);
   }
-
+ 
   // ── SECOND WAVE ── delayed ring + more particles
   setTimeout(()=>{
     ro.appendChild(makeRing(0,'rgba(255,255,255,.7)'));
@@ -559,35 +667,48 @@ function doRoar(){
       ro.appendChild(el);
     }
   },300);
-
+ 
   // ── COMPANION POP ──
   const em=document.getElementById('cemoji');
   em.classList.remove('pop'); void em.offsetWidth; em.classList.add('pop');
   setTimeout(()=>em.classList.remove('pop'),720);
-
+ 
   // ── DISMISS after 2.6s ──
   roarTimer=setTimeout(()=>{
     ro.classList.remove('on');
     ro.querySelectorAll('.srw,.rdot,.rstar').forEach(el=>el.remove());
   },2600);
-
+ 
   // Tap to dismiss early on mobile
   ro.onclick=()=>{
     clearTimeout(roarTimer);
     ro.classList.remove('on');
     ro.querySelectorAll('.srw,.rdot,.rstar').forEach(el=>el.remove());
   };
-
+ 
   // Toast
   const msgs=['You are a force. Act like it.','There she is. The real you.','Unleashed. Unbothered. Unstoppable.','They will remember this version of you.','That energy? Bottle it. Use it all.'];
   setTimeout(()=>showToast(d.e+' '+msgs[Math.floor(Math.random()*msgs.length)]),400);
 }
-
+ 
 </script>
 <div id="ro">
   <div id="ro-bg"></div>
   <div id="ro-em"></div>
   <div id="ro-wd"></div>
+</div>
+<div id="mood-modal" onclick="if(event.target===this)closeMoodModal()">
+  <div id="mood-modal-card">
+    <div id="mood-modal-col">
+      <button id="mood-modal-close-top" onclick="closeMoodModal()">&#x2715;</button>
+      <span id="mood-modal-icon">&#x1F30A;</span>
+      <span id="mood-modal-title">Overwhelmed</span>
+    </div>
+    <div id="mood-modal-body">
+      <span id="mood-modal-msg"></span>
+      <button id="mood-modal-cta" onclick="closeMoodModal()">I needed that &#x2736;</button>
+    </div>
+  </div>
 </div>
 </body>
 </html>
