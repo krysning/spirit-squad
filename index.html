@@ -85,7 +85,7 @@ body{background:var(--cream);font-family:'DM Sans',sans-serif;color:var(--char);
 .tribe-f{display:flex}
 .tf{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.28);display:flex;align-items:center;justify-content:center;font-size:1rem;margin-left:-9px}
 .tf:first-child{margin-left:0}
-.affblock{background:#1e2a3a;border-radius:22px;padding:28px 22px;margin-bottom:22px;text-align:center;position:relative;overflow:hidden}
+.affblock{background:var(--char);border-radius:22px;padding:28px 22px;margin-bottom:22px;text-align:center;position:relative;overflow:hidden}
 .affblock::before{content:'"';font-family:'Fraunces',serif;font-size:11rem;position:absolute;top:-45px;left:8px;opacity:.05;color:#fff;line-height:1}
 .afflabel{font-size:.67rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:12px;position:relative;z-index:1}
 .afftext{font-family:'Fraunces',serif;font-size:clamp(1.1rem,4vw,1.5rem);font-weight:700;color:#fff;line-height:1.4;position:relative;z-index:1;transition:opacity .35s ease,transform .35s ease}
@@ -482,12 +482,23 @@ function triggerTakeover(a){
   const tk=document.getElementById('takeover');
   tk.classList.add('on');
   document.body.style.overflow='hidden';
+  // Explicitly hide hero so it can't flash through during transition
+  document.getElementById('hero').style.display='none';
   setTimeout(()=>burst(innerWidth/2,innerHeight/2,65,d.pts,'b'),450);
 }
 function enterApp(){
   const tk=document.getElementById('takeover');
-  tk.style.transition='opacity .4s ease';tk.style.opacity='0';
-  setTimeout(()=>{tk.classList.remove('on');tk.style.transition='';tk.style.opacity='';document.body.style.overflow='';setupApp()},400);
+  tk.style.transition='opacity .4s ease';
+  tk.style.opacity='0';
+  setTimeout(()=>{
+    tk.classList.remove('on');
+    tk.style.transition='';
+    tk.style.opacity='';
+    tk.style.transform='';
+    document.getElementById('hero').style.display='none';
+    document.body.style.overflow='';
+    setupApp();
+  },400);
 }
 function setupApp(){
   const d=A[cur];
@@ -506,8 +517,19 @@ function setupApp(){
   setTimeout(burstEmoji,350);
 }
 function goBack(){
-  document.getElementById('hero').style.display='flex';
+  // Reset app
   document.getElementById('app').style.display='none';
+  document.getElementById('app').classList.remove('on');
+  // Reset takeover fully
+  const tk=document.getElementById('takeover');
+  tk.classList.remove('on');
+  tk.style.transition='';
+  tk.style.opacity='';
+  // Reset takeover bg scale so animation works fresh next time
+  document.getElementById('tk-bg').style.transform='';
+  // Show hero
+  document.getElementById('hero').style.display='flex';
+  document.body.style.overflow='';
   window.scrollTo({top:0,behavior:'instant'});
 }
  
